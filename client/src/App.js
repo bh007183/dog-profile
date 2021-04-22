@@ -9,10 +9,15 @@ import * as actions from "./store/apiActionCreators"
 
 const store = configureStore()
 
-
 store.dispatch(
-  loadDogs()
+  getDogs(),
+  
 )
+store.dispatch(
+  loadDogs(),
+  
+)
+
 
 function App() {
   return (

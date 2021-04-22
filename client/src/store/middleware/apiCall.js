@@ -4,7 +4,9 @@ import * as actions from "../apiActionCreators"
 
 
 
-const api = ({dispatch}) => next => async action => {
+
+
+export const api = ({dispatch}) => next => async action => {
     if(action.type !== actions.apiCallBegan.type) return next(action)
     next(action)
     const {url, method, data, onSuccess, onError} = action.payload
@@ -12,7 +14,6 @@ const api = ({dispatch}) => next => async action => {
     
 try{
     const response = await axios.request({
-        baseURL: 'http://localhost:8080/api',
         url,
         method,
         data
@@ -32,4 +33,3 @@ if(onError)dispatch({type: onError, payload: error})
    
 
 }
-export default api

@@ -3,6 +3,7 @@ import DogCards from "../components/DogCards"
 
 import {apiCallBegan} from "./apiActionCreators"
 
+
 const slice = createSlice({
     name: "dogs",
     initialState: [],
@@ -13,6 +14,10 @@ const slice = createSlice({
         setDogs: (dogs, action) => {
             
             dogs.push({dogs: action.payload})
+        },
+        newDogs: (dogs, action) => {
+            
+            dogs.push({dogs: action.payload})
         }
             
         
@@ -21,14 +26,20 @@ const slice = createSlice({
 
 
 
-export const {setDogs, dogsReceived} = slice.actions
+export const {setDogs, newDogs, dogsReceived} = slice.actions
 
 export default slice.reducer
+export const getDogs = () => apiCallBegan({
+    url: "https://dog.ceo/api/breeds/image/random",
+    onSuccess: newDogs.type
+})
 
 export const loadDogs = () => apiCallBegan({
-    url: "/dogs",
+    url: "http://localhost:8080/api/dogs",
     onSuccess: setDogs.type
   })
+
+
 
 
 
